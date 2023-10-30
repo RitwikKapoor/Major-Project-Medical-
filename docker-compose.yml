@@ -1,0 +1,56 @@
+version: "3.7"
+
+services:
+  express-server:
+    build:
+      context: ./express-server
+      dockerfile: Dockerfile
+    image: express-medical
+    container_name: express-medical-container
+    volumes:
+      - ./express-server/:/app/express-server
+      - express-server-modules:/app/express-server/node_modules
+    ports:
+      - "7000:7000"
+    depends_on:
+      - mongos
+    env_file: ./express-server/.env
+    networks:
+      - app-network
+  mongos:
+    container_name: mongos
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: react-medical
+    container_name: react-medical-container
+    volumes:
+      - ./client/:/app/client
+      -  client-modules:/app/client/node_modules
+    depends_on:
+      - express-server
+    env_file: ./client/.env.local
+    ports:
+      - "5174:5173"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+  express-server-modules:
+    driver: local
+  client-modules:
+    driver: local
