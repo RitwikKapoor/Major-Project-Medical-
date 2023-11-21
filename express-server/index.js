@@ -3,8 +3,10 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import mongoose from "mongoose";
-import { authRoute } from "./routes/authRoutes.js";
-
+import { userRouter } from "./routes/userRoutes.js";
+import { doctorRouter } from "./routes/doctorRoutes.js";
+import { appointmentRouter } from "./routes/appointmentRoutes.js";
+import { reviewRouter } from "./routes/reviewRoutes.js";
 
 dotenv.config();
 
@@ -33,4 +35,7 @@ app.get("/test", (req, res) => {
   res.send("Hello World! I am here.....");
 });
 
-
+app.use("/api/user", userRouter);
+app.use("/api/doctor", doctorRouter);
+app.use("/api/appoint", appointmentRouter);
+app.use("/api/review", reviewRouter);
