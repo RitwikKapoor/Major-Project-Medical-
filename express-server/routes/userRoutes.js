@@ -5,19 +5,22 @@ import adminCheck from "../middleware/adminCheck.js";
 import {
   deleteUser,
   getAllUsers,
-  getSingleUser,
+  getUserInfo,
   login,
   register,
   updateProfile,
+  logout,
 } from "../controllers/userController.js";
+import userCheck from "../middleware/userCheck.js";
 
 const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
+router.post("/logout", jwtCheck, logout);
+router.get("/getUserInfo", jwtCheck, userCheck, getUserInfo);
 router.put("/update", jwtCheck, updateProfile);
 router.get("/getAllUsers", jwtCheck, adminCheck, getAllUsers);
-router.get("/getUser/:id", jwtCheck, adminCheck, getSingleUser);
 router.delete("/deleteUser", jwtCheck, adminCheck, deleteUser);
 
 export { router as userRouter };

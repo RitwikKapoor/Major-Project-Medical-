@@ -1,16 +1,18 @@
 import express from "express";
 import jwtCheck from "../middleware/jwtCheck.js";
-import doctorOrAdminCheck from "../middleware/doctorOrAdminCheck.js";
+import userCheck from "../middleware/userCheck.js";
+import doctorCheck from "../middleware/doctorCheck.js"
+
 import {
   bookAppointment,
-  completed,
-  getAllAppointments,
+  getUserAppointments,
+  getDoctorAppointments
 } from "../controllers/appointmentController.js";
 
 const router = express.Router();
 
-router.post("/book", jwtCheck, bookAppointment);
-router.put("/complete", jwtCheck,completed);
-router.get("/getAllAppointments", jwtCheck, doctorOrAdminCheck,getAllAppointments);
+router.post("/book/:id", jwtCheck, bookAppointment);
+router.get("/getUserAppointments", jwtCheck, userCheck, getUserAppointments);
+router.get("/getDoctorAppointments", jwtCheck, doctorCheck, getDoctorAppointments);
 
 export { router as appointmentRouter };

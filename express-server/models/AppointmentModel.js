@@ -1,32 +1,24 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const AppointmentSchema = mongoose.Schema(
+const AppointmentSchema = Schema(
   {
     userId: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
     doctorId: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: "User",
+      type: Schema.Types.ObjectId,
+      ref: "Doctor",
       required: true,
     },
     date: {
-      type: Date,
+      type: String,
       required: true,
     },
     time: {
       type: String,
       required: true,
-    },
-    status: {
-      type: String,
-      default: "Pending",
-    },
-    isPaid: {
-      type: Boolean,
-      default: true,
     },
   },
   {

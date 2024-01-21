@@ -25,7 +25,12 @@ mongoose
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.FRONTEND_URL,
+  })
+);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -35,7 +40,8 @@ app.get("/test", (req, res) => {
   res.send("Hello World! I am here.....");
 });
 
-app.use("/api/user", userRouter);
 app.use("/api/doctor", doctorRouter);
+app.use("/api/user", userRouter);
 app.use("/api/appoint", appointmentRouter);
 app.use("/api/review", reviewRouter);
+
