@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import useFetchUserInfo from "../../customHooks/useFetchUserInfo.jsx";
 import { setLogout } from "../../redux/rootSlice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Bookings from "./Bookings.jsx";
 import ProfileSettings from "./ProfileSettings.jsx";
 
 const ProfileDashboard = () => {
-  const { photo, email, name, role } = useFetchUserInfo();
+    const { photo, email, name, role } = useSelector((state) => state.root.user);
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(setLogout());
   };
 
   const [tab, setTab] = useState("settings");
-  
+
   return (
     <div className="max-w-[1170px] px-5 mx-auto">
       <div className="grid md:grid-cols-3 gap-10">
@@ -56,7 +55,7 @@ const ProfileDashboard = () => {
               >
                 My Bookings
               </button>
-            )}  
+            )}
             <button
               onClick={() => setTab("settings")}
               className={` ${
@@ -66,7 +65,7 @@ const ProfileDashboard = () => {
               Profile Settings
             </button>
           </div>
-          {role !== "admin" && tab === "bookings" && <Bookings role={role}/>}
+          {role !== "admin" && tab === "bookings" && <Bookings role={role} />}
           {tab === "settings" && <ProfileSettings />}
         </div>
       </div>

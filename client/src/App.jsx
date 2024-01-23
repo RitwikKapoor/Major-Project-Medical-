@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
 import ScrollButton from "./components/Layout/ScrollButton";
 import useLocalStorageChangeListener from "./customHooks/useLocalStorageChangeListener";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setLogout, setUser } from "./redux/rootSlice";
+import useFetchUserInfo from "./customHooks/useFetchUserInfo";
 
 function App() {
   useLocalStorageChangeListener("isLoggedIn");
-  return(
+  const { role, photo, name, email } = useFetchUserInfo();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      setUser({
+        role,
+        name,
+        email,
+        photo,
+      })
+    );
+  }, [role, name, email, photo]);
+  return (
     <>
-      <Layout />;
-      <ScrollButton/>
+      <Layout />
+      <ScrollButton />
     </>
-  ) 
+  );
 }
 
 export default App;

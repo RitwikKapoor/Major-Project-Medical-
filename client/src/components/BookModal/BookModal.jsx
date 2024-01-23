@@ -22,7 +22,7 @@ const BookModal = ({ onClose, starttime, endtime }) => {
 
   const handleBookAppointment = (e) => {
     e.preventDefault();
-    dispatch(setLoading(false));
+    dispatch(setLoading(true));
     axios
       .post(
         `${import.meta.env.VITE_APP_BASE_URL}/appoint/book/${id}`,

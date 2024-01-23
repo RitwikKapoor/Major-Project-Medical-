@@ -3,13 +3,13 @@ import logo from "../../assests/logo.png";
 import { NavLink, Link } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import ProfileMenu from "../ProfileMenu/ProfileMenu.jsx";
-import useFetchUserInfo from "../../customHooks/useFetchUserInfo.jsx";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   let isLoggedIn = localStorage.getItem("isLoggedIn");
-  const { photo, role, name } = useFetchUserInfo();
+  const { photo, role } = useSelector((state) => state.root.user);
 
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
@@ -51,7 +51,7 @@ const Header = () => {
               {role === "admin" && isLoggedIn && (
                 <li>
                   <NavLink
-                    to="/dashboard/users"
+                    to="/dashboard"
                     className={(navClass) =>
                       navClass.isActive
                         ? "text-primaryColor text-[16px] leading-7 font-[600]"

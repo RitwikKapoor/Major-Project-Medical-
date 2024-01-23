@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";  
+import axios from "axios";
 
 export const rootReducer = createSlice({
   name: "root",
   initialState: {
     loading: false,
+    user: {},
   },
   reducers: {
     setLoading: (state, action) => {
@@ -30,8 +31,11 @@ export const rootReducer = createSlice({
           console.error(error);
         });
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { setLoading, setLogin, setLogout } = rootReducer.actions;
+export const { setLoading, setLogin, setLogout, setUser } = rootReducer.actions;
 export default rootReducer.reducer;

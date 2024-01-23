@@ -46,7 +46,7 @@ const useFetchUserInfo = () => {
     if (isLoggedIn) {
       fetchData();
     }
-  }, [isLoggedIn]);
+  }, []);
 
   return { photo, role, email, name };
 };

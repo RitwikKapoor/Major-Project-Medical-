@@ -2,19 +2,18 @@ import React, { useState } from "react";
 import { MdCurrencyRupee } from "react-icons/md";
 import BookModal from "../BookModal/BookModal";
 import { toast } from "react-toastify";
-import useFetchUserInfo from "../../customHooks/useFetchUserInfo";
+import { useSelector } from "react-redux";
 
 const SidePanel = ({ starttime, endtime, fees }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("isLoggedIn");
-  const { role } = useFetchUserInfo();
+  const { role } = useSelector((state) => state.root.user);
 
   const openModal = () => {
     if (!isLoggedIn) {
       toast.warn("Please login first");
     } else {
       if (role !== "user") {
-        console.log(role)
         toast.warn("You are not allowed to book from this account");
       } else {
         setIsModalOpen(true);

@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading, setLogin} from "../redux/rootSlice.js";
+import { setLoading, setLogin } from "../redux/rootSlice.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -28,11 +28,11 @@ const Login = () => {
       })
       .then((res) => {
         if (res.status === 200) {
-          dispatch(setLoading(false));
+          dispatch(setLogin());
           setTimeout(() => {
+            dispatch(setLoading(false));
             window.location.reload();
           }, 1000);
-          dispatch(setLogin());
         } else {
           throw new Error("Unexpected response");
         }
