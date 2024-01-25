@@ -26,6 +26,12 @@ export const Admin = ({ children }) => {
   const { role } = useSelector((state) => state.root.user);
   const [loading, setLoading] = useState(true);
 
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace={true} />;
+  }
+
   useEffect(() => {
     if (role) {
       setLoading(false);
@@ -46,6 +52,12 @@ export const Admin = ({ children }) => {
 export const Doctor = ({ children }) => {
   const { role } = useSelector((state) => state.root.user);
   const [loading, setLoading] = useState(true);
+
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace={true} />;
+  }
 
   useEffect(() => {
     if (role) {
@@ -68,6 +80,12 @@ export const User = ({ children }) => {
   const { role } = useSelector((state) => state.root.user);
   const [loading, setLoading] = useState(true);
 
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replac e={true} />;
+  }
+
   useEffect(() => {
     if (role) {
       setLoading(false);
@@ -84,5 +102,3 @@ export const User = ({ children }) => {
 
   return <Navigate to="/login" replace={true} />;
 };
-
-
