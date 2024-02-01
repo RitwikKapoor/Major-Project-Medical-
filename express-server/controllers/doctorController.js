@@ -1,5 +1,7 @@
 import User from "../models/UserModel.js";
 import Doctor from "../models/DoctorModel.js";
+import Appointment from "../models/AppointmentModel.js";
+import Review from "../models/ReviewModel.js";
 
 export const applyForDoctor = async (req, res) => {
   try {
@@ -7,14 +9,30 @@ export const applyForDoctor = async (req, res) => {
       userId: req.locals,
     });
     if (application_already_exist) {
-      return res.status(400).send("Application already exists");
+      return res.status(400).send({ msg: "Application already exists" });
     }
     const doctor = Doctor({ ...req.body, userId: req.locals });
     await doctor.save();
 
-    return res.status(201).send("Application submitted successfully");
+    return res.status(201).send({ msg: "Application submitted successfully" });
   } catch (err) {
-    res.status(500).send("Unable to submit application");
+    res.status(500).send({ msg: "Unable to submit application" });
+  }
+};
+
+export const getPendingDoctorApplications = async (req, res) => {
+  try {
+    const pending_doctor_applications = await Doctor.find({
+      status: "pending",
+    })
+      .select("specialization fees -_id")
+      .populate({
+        path: "userId",
+        select: "firstname lastname email",
+      });
+    return res.status(200).send(pending_doctor_applications);
+  } catch (err) {
+    res.status(500).send({ msg: "Unable to get pending doctor applications" });
   }
 };
 
@@ -27,20 +45,33 @@ export const acceptDoctor = async (req, res) => {
       { status: "accepted" }
     );
 
-    return res.status(201).send("Application accepted");
+    return res.status(200).send({ msg: "Application accepted" });
   } catch (err) {
-    res.status(500).send("Error while accepting doctor application  ");
+    res.status(500).send({ msg: "Error while accepting doctor application " });
   }
 };
 
 export const rejectDoctor = async (req, res) => {
   try {
-    await User.findOneAndUpdate({ _id: req.body.id }, { isDoctor: false });
     await Doctor.findOneAndDelete({ userId: req.body.id });
 
-    return res.status(201).send("Application rejected");
+    return res.status(200).send({ msg: "Application rejected" });
   } catch (error) {
-    res.status(500).send("Error while rejecting application");
+    res.status(500).send({ msg: "Error while rejecting application" });
+  }
+};
+
+export const getAllDoctors = async (req, res) => {
+  try {
+    const doctors = await Doctor.find({ status: "accepted" })
+      .select("specialization clinicAddress averageRating totalRating fees")
+      .populate({
+        path: "userId",
+        select: "firstname lastname gender email photo",
+      });
+    return res.status(200).send(doctors);
+  } catch (err) {
+    res.status(500).send({ msg: "Unable to get all doctors" });
   }
 };
 
@@ -53,54 +84,47 @@ export const deleteDoctor = async (req, res) => {
         isDoctor: false,
       }
     );
-    res.status(200).send("Doctor deleted successfully");
-  } catch (err) {
-    res.status(500).send("Unable to delete doctor");
-  }
-};
 
-export const getAllDoctors = async (req, res) => {
-  try {
-    const doctors = await Doctor.find({ status: "accepted" })
-      .select("specialization clinicAddress")
-      .populate({
-        path: "userId",
-        select: "firstname lastname gender photo -_id",
+    await Appointment.deleteMany({ userId: req.body.id })
+      .then((res) => {
+        console.log(
+          `Deleted ${res.deletedCount} appointments with userId '${req.body.id}'.`
+        );
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    return res.status(200).send(doctors);
+
+    await Review.deleteMany({ userId: req.body.id })
+      .then((res) => {
+        console.log(
+          `Deleted ${res.deletedCount} reviews with userId '${req.body.id}'.`
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+    res.status(200).send({ msg: "Doctor deleted successfully" });
   } catch (err) {
-    res.status(500).send("Unable to get all doctors");
+    console.log(err);
+    res.status(500).send({ msg: "Unable to delete doctor" });
   }
 };
 
 export const getSingleDoctor = async (req, res) => {
   try {
     const doctor = await Doctor.findById(req.params.id)
-      .select("-password")
+      .select("-password -createdAt -updatedAt")
       .populate({
         path: "userId",
-        select: "-password",
+        select:
+          "-password -dob -isAdmin -isDoctor -createdAt -gender -updatedAt",
       })
       .populate("reviews");
     return res.status(200).send(doctor);
   } catch (err) {
-    console.error(err)
-    // res.status(500).send("Cannot fetch doctor details");
-    res.status(500).send(err)
-  }
-};
-
-export const getPendingDoctorApplications = async (req, res) => {
-  try {
-    const pending_doctor_applications = await Doctor.find({
-      status: "pending",
-    }).populate({
-      path: "userId",
-      select: "-password -isAdmin -isDoctor -Address -dob",
-    });
-
-    return res.status(200).send(pending_doctor_applications);
-  } catch (err) {
-    res.status(500).send("Unable to get pending doctor applications");
+    console.error(err);
+    res.status(500).send({ msg: "Cannot fetch doctor details" });
   }
 };

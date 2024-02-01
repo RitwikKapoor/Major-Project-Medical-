@@ -9,18 +9,21 @@ import {
   getAllDoctors,
   getPendingDoctorApplications,
   getSingleDoctor,
+  deleteDoctor,
 } from "../controllers/doctorController.js";
 
 const router = express.Router();
 
-//nested route, id of doctor
-router.use("/:id/reviews", reviewRouter);
+router.get("/pending", jwtCheck, adminCheck, getPendingDoctorApplications);
+router.get("/getAllDoctors", getAllDoctors);
+router.get("/:id", getSingleDoctor);
 
 router.post("/apply", jwtCheck, applyForDoctor);
 router.put("/accept", jwtCheck, adminCheck, acceptDoctor);
-router.put("/reject", jwtCheck, adminCheck, rejectDoctor);
-router.get("/:id", getSingleDoctor);
-router.get("/getAllDoctors", getAllDoctors);
-router.get("/getPending", jwtCheck, adminCheck, getPendingDoctorApplications);
+router.delete("/reject", jwtCheck, adminCheck, rejectDoctor);
+router.delete("/deleteDoctor", jwtCheck, adminCheck, deleteDoctor)
+
+//nested route, id of doctor
+router.use("/:id/reviews", reviewRouter);
 
 export { router as doctorRouter };

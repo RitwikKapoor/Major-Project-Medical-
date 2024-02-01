@@ -1,14 +1,13 @@
-import mongoose from "mongoose";
-import Doctor from "./DoctorModel.js";
+import mongoose, { Schema } from "mongoose";
 
-const ReviewSchema = new mongoose.Schema(
+const ReviewSchema = new Schema(
   {
     doctorId: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Doctor",
     },
     userId: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
     reviewText: {
@@ -49,8 +48,7 @@ ReviewSchema.statics.calcAverageRatings = async function (doctorId) {
       },
     },
   ]);
-
-  console.log(stats);
+  
   await Doctor.findByIdAndUpdate(doctorId, {
     totalRating: stats[0].numOfRating,
     averageRating: stats[0].avgRating

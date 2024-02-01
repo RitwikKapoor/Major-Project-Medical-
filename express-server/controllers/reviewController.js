@@ -25,8 +25,8 @@ export const createReview = async (req, res) => {
       $push: { reviews: result._id },
     });
 
-    return res.status(201).send("Review Submitted");
+    return res.status(201).send({msg:"Review Submitted"});
   } catch (err) {
-    res.status(500).send("Unable to create review");
+    res.status(500).send({msg: "Unable to create review"});
   }
 };

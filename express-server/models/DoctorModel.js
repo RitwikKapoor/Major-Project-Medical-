@@ -1,11 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const DoctorSchema = new mongoose.Schema(
+const DoctorSchema = new Schema(
   {
     userId: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
     specialization: {
       type: String,
@@ -29,17 +28,28 @@ const DoctorSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "accepted", "rejected"],
+      enum: ["pending", "accepted"],
       default: "pending",
     },
     clinicAddress: {
       type: String,
       default: "",
     },
-    reviews: [{ 
-      type: mongoose.Types.ObjectId, 
-      ref: "Review" 
-    }],
+    education: {
+      type: Array,
+    },
+    work: {
+      type: Array,
+    },
+    bio: {
+      type: String,
+    },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
     averageRating: {
       type: Number,
       default: 0,
