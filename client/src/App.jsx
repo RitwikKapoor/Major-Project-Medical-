@@ -3,8 +3,7 @@ import "./App.css";
 import Layout from "./components/Layout/Layout";
 import ScrollButton from "./components/Layout/ScrollButton";
 import useLocalStorageChangeListener from "./customHooks/useLocalStorageChangeListener";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { setLogout, setUser } from "./redux/rootSlice";
 import useFetchUserInfo from "./customHooks/useFetchUserInfo";
 
