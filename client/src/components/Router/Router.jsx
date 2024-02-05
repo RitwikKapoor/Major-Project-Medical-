@@ -7,6 +7,7 @@ const ApplyDoctor = lazy(() => import("../../pages/ApplyDoctor.jsx"));
 import Home from "../../pages/Home.jsx";
 import Login from "../../pages/Login.jsx";
 import Register from "../../pages/Register.jsx";
+import ChangePassword from "../../pages/ChangePassword.jsx";
 import Doctors from "../../pages/Doctors.jsx";
 import Loader from "../../comman/Loader/Loader.jsx";
 import { Admin, Protected, Public, Doctor, User } from "../../utils/route.jsx";
@@ -46,6 +47,17 @@ const Router = () => {
             <User>
               <ApplyDoctor />
             </User>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/change-password"
+        element={
+          <Suspense fallback={<Loader />}>
+            <Public> 
+              {/* change to protected afterwards */}
+              <ChangePassword />
+            </Public>
           </Suspense>
         }
       />
