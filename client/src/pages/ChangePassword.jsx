@@ -7,7 +7,7 @@ import { setLoading } from "../redux/rootSlice.js";
 
 const ChangePassword = () => {
   const [passwordData, setPasswordData] = useState({
-    oldPassword: "",
+    currentPassword: "",
     newPassword: "",
   });
 
@@ -23,23 +23,23 @@ const ChangePassword = () => {
     dispatch(setLoading(true));
 
     try {
-      const response = await axios.post(
+      const response = await axios.put(
         `${import.meta.env.VITE_APP_BASE_URL}/user/change-password`,
         passwordData,
         { withCredentials: true }
       );
 
       if (response.status === 200) {
-        setTimeout(() => {
+       
           dispatch(setLoading(false));
           toast.success("Password changed successfully!");
-        }, 1000);
       } else {
         throw new Error("Unexpected response");
       }
     } catch (error) {
       setTimeout(() => {
         dispatch(setLoading(false));
+        console.log("Password Data:", passwordData);
         toast.error(error.response?.data?.msg || "Failed to change password");
       }, 1000);
     }
@@ -55,9 +55,9 @@ const ChangePassword = () => {
           <div className="mb-5">
             <input
               type="password"
-              placeholder="Enter your old password"
-              name="oldPassword"
-              value={passwordData.oldPassword}
+              placeholder="Enter your current password"
+              name="currentPassword"
+              value={passwordData.currentPassword}
               onChange={handleInputChange}
               className="w-full py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer"
               required

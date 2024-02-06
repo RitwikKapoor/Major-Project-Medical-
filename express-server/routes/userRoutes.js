@@ -10,6 +10,7 @@ import {
   register,
   updateProfile,
   logout,
+  changepassword,
 } from "../controllers/userController.js";
 import userCheck from "../middleware/userCheck.js";
 
@@ -20,6 +21,7 @@ router.post("/login", login);
 router.post("/logout", jwtCheck, logout);
 router.get("/getUserInfo", jwtCheck, userCheck, getUserInfo);
 router.put("/update", jwtCheck, updateProfile);
+router.put("/change-password", jwtCheck, changepassword);
 router.get("/getAllUsers", jwtCheck, adminCheck, getAllUsers);
 router.delete("/deleteUser", jwtCheck, adminCheck, deleteUser);
 

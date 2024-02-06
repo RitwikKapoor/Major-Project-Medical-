@@ -88,22 +88,6 @@ const Header = () => {
                     Doctors
                   </NavLink>
                 </li>
-                
-                {/* change !isLoggedIn to isLoggedIn afterwards */}
-                {!isLoggedIn && (
-                <li>
-                  <NavLink
-                    to="/change-password"
-                    className={(navClass) =>
-                      navClass.isActive
-                        ? "text-primaryColor text-[16px] leading-7 font-[600]"
-                        : "text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor"
-                    }
-                  >
-                    Change Password
-                  </NavLink>
-                </li>
-              )}
             </ul>
           </div>
 

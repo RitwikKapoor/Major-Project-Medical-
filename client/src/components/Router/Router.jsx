@@ -51,17 +51,6 @@ const Router = () => {
         }
       />
       <Route
-        path="/change-password"
-        element={
-          <Suspense fallback={<Loader />}>
-            <Public> 
-              {/* change to protected afterwards */}
-              <ChangePassword />
-            </Public>
-          </Suspense>
-        }
-      />
-      <Route
         path="/profile/me"
         element={
           <Suspense fallback={<Loader />}>
