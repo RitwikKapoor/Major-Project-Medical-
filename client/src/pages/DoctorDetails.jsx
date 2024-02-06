@@ -4,15 +4,17 @@ import DoctorFeedback from "../components/Doctor/DoctorFeedback";
 import SidePanel from "../components/Doctor/SidePanel";
 import { useLocation } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../redux/rootSlice.js";
 import axios from "axios";
+import BounceLoader from "react-spinners/BounceLoader";
 
 const DoctorDetails = () => {
   const [tab, setTab] = useState("about");
   const [details, setDetails] = useState([]);
   const { pathname } = useLocation();
   const id = pathname.split("/").slice(-1)[0];
+  const { loading } = useSelector((state) => state.root);
 
   const dispatch = useDispatch();
 
@@ -23,6 +25,7 @@ const DoctorDetails = () => {
       .then((res) => {
         if (res.status === 200) {
           setDetails(res.data);
+          console.log(res?.data?.reviews);
           dispatch(setLoading(false));
         } else {
           throw new Error("Unexpected response");
@@ -38,7 +41,15 @@ const DoctorDetails = () => {
     getDoctorInfo();
   }, []);
 
-  return (
+  const handleUpdateReview = () => {
+    getDoctorInfo();
+  };
+
+  return loading ? (
+    <div className="flex justify-center items-center">
+      <BounceLoader color="#000000" />
+    </div>
+  ) : (
     <section>
       <div className="max-w-[1170px] px-5 mx-auto">
         <div className="grid md:grid-cols-3 gap-[50px]">
@@ -60,7 +71,8 @@ const DoctorDetails = () => {
                 </h3>
                 <div className="flex items-center gap-[6px]">
                   <span className="flex items-center gap-[6px] leading-7 text-[16px] lg:leading-7 font-semibold text-headingColor">
-                    <FaStar className="text-yellow-500 lg:text-xl" /> {details?.averageRating}
+                    <FaStar className="text-yellow-500 lg:text-xl" />{" "}
+                    {details?.averageRating}
                   </span>
                   <span className="text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[400] text-textColor">
                     ({details?.totalRating})
@@ -100,7 +112,13 @@ const DoctorDetails = () => {
                   work={details?.work}
                 />
               )}
-              {tab === "feedback" && <DoctorFeedback />}
+              {tab === "feedback" && (
+                <DoctorFeedback
+                  reviews={details?.reviews}
+                  totalRating={details?.totalRating}
+                  onUpdateReview={handleUpdateReview}
+                />
+              )}
             </div>
           </div>
           <div>

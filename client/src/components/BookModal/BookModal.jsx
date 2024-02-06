@@ -34,18 +34,14 @@ const BookModal = ({ onClose, starttime, endtime }) => {
       .then((res) => {
         if (res.status === 201) {
           toast.success(res.data.msg);
-          setTimeout(() => {
             dispatch(setLoading(false));
-          }, 1000);
         } else {
           throw new Error("Unexpected response");
         }
       })
       .catch((error) => {
-        setTimeout(() => {
           dispatch(setLoading(false));
           toast.error(error.response.data.msg);
-        }, 1000);
       });
     onClose();
   };

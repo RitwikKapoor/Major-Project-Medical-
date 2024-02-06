@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../../redux/rootSlice.js";
 import { toast } from "react-toastify";
 import axios from "axios";
+import BounceLoader from "react-spinners/BounceLoader";
 
 const Bookings = ({ role }) => {
   const [appointments, setAppointments] = useState([]);
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.root);
 
   let endpoint;
   if (role === "doc") {
@@ -40,7 +42,13 @@ const Bookings = ({ role }) => {
   }, []);
 
   return (
-    <div className="rounded-sm bg-white p-4 shadow-default mt-5">
+    loading ? (
+      <div className="flex justify-center items-center">
+      <BounceLoader color="#000000" />
+    </div>
+    ) :
+    (
+      <div className="rounded-sm bg-white p-4 shadow-default mt-5">
       <div className="max-w-full overflow-x-auto">
         <div className="max-h-[400px] overflow-y-auto">
           <table className="w-full table-auto">
@@ -79,6 +87,7 @@ const Bookings = ({ role }) => {
         </div>
       </div>
     </div>
+    )
   );
 };
 

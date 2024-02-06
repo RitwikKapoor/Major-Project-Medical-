@@ -46,23 +46,19 @@ const ProfileSettings = () => {
       .then((res) => {
         if (res.status === 200) {
           toast.success(res.data.msg);
-          setTimeout(() => {
-            dispatch(setLoading(false));
-          }, 1000);
+          dispatch(setLoading(false));
         } else {
           throw new Error("Unexpected response");
         }
       })
       .catch((error) => {
-        setTimeout(() => {
-          dispatch(setLoading(false));
-          toast.error(error.response.data.msg);
-        }, 1000);
+        dispatch(setLoading(false));
+        toast.error(error.response.data.msg);
       });
   };
 
   return (
-    <form onSubmit={submitHandler} className="mt-4">
+    <form onSubmit={submitHandler} className="px-5 w-full max-w-[500px] mx-auto mt-4">
       <div className="mb-5">
         <input
           type="text"

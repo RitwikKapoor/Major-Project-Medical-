@@ -29,19 +29,15 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           dispatch(setLogin());
-          setTimeout(() => {
             dispatch(setLoading(false));
             window.location.reload();
-          }, 1000);
         } else {
           throw new Error("Unexpected response");
         }
       })
       .catch((error) => {
-        setTimeout(() => {
           dispatch(setLoading(false));
           toast.error(error.response.data.msg);
-        }, 1000);
       });
   };
 

@@ -4,7 +4,7 @@ import Layout from "./components/Layout/Layout";
 import ScrollButton from "./components/Layout/ScrollButton";
 import useLocalStorageChangeListener from "./customHooks/useLocalStorageChangeListener";
 import { useDispatch } from "react-redux";
-import { setLogout, setUser } from "./redux/rootSlice";
+import { setUser } from "./redux/rootSlice";
 import useFetchUserInfo from "./customHooks/useFetchUserInfo";
 
 function App() {
