@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { setLogout } from "../../redux/rootSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import Bookings from "./Bookings.jsx";
+import ChangePassword from "../../pages/ChangePassword.jsx";
 import ProfileSettings from "./ProfileSettings.jsx";
 
 const ProfileDashboard = () => {
@@ -12,6 +13,10 @@ const ProfileDashboard = () => {
   };
 
   const [tab, setTab] = useState("settings");
+
+  const handleChangePassword = () => {
+    setTab("changePassword");
+  };
 
   return (
     <div className="max-w-[1170px] px-5 mx-auto">
@@ -35,6 +40,7 @@ const ProfileDashboard = () => {
             </p>
           </div>
           <div className="mt-[50px] md:mt-5">
+          
             <button
               onClick={handleLogout}
               className="w-full bg-red-600 p-3 text-[16px] leading-7 rounded-md"
@@ -60,13 +66,27 @@ const ProfileDashboard = () => {
               onClick={() => setTab("settings")}
               className={` ${
                 tab === "settings" && "bg-primaryColor text-white font-normal"
-              } py-2 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}
+              } p-2 px-5 mr-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}
             >
               Profile Settings
+            </button>
+
+            <button
+              onClick={() => setTab("changePassword")}
+              className={` ${
+                tab === "changePassword" && "bg-primaryColor text-white font-normal"
+              } py-2 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}
+            >
+              Change Password
             </button>
           </div>
           {role !== "admin" && tab === "bookings" && <Bookings role={role} />}
           {tab === "settings" && <ProfileSettings />}
+          {tab === "changePassword" && (
+          <div className="md:col-span-2 md:px-[30px] mt-4">
+            <ChangePassword />
+          </div>
+        )}
         </div>
       </div>
     </div>

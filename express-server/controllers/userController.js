@@ -71,7 +71,7 @@ export const getUserInfo = async (req, res) => {
 };
 
 export const updateProfile = async (req, res) => {
-  const { dob, password } = req.body;
+  const { dob } = req.body;
   try {
     const updateFields = { ...req.body };
 
@@ -79,11 +79,6 @@ export const updateProfile = async (req, res) => {
       const part = dob.split("-");
       const formattedDate = `${part[2]}-${part[1]}-${part[0]}`;
       updateFields.dob = formattedDate.toString();
-    }
-
-    if (password) {
-      const hashpassword = await bcrypt.hash(password, 10);
-      updateFields.password = hashpassword;
     }
 
     const result = await User.findByIdAndUpdate(
@@ -99,6 +94,54 @@ export const updateProfile = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send({ msg: "Unable to update user" });
+  }
+};
+
+
+export const changepassword = async (req, res) => {
+  try {
+
+    if(req.body.newPassword === req.body.currentPassword){
+      return res.status(400).json({ msg: "Old Password and New Password is same" });
+    }
+    // Step 1: Find the user by email
+    const user = await User.findById(req.locals);
+    
+    if (!user) {
+      return res.status(400).json({ msg: "No such user, register first" });
+    }
+
+    // Step 2: Compare passwords
+    const isMatch = await bcrypt.compare(req.body.currentPassword, user.password);
+    
+    if (!isMatch) {
+      
+      return res.status(400).json({ msg: "Current password is incorrect" });
+    }
+
+    // Step 3: Hash new password
+    const newPassword = req.body.newPassword;
+    const hashpassword = await bcrypt.hash(newPassword, 10);
+
+    // Step 4: Update password
+    const result = await User.findByIdAndUpdate(
+      { _id: user._id },
+      { password: hashpassword },
+      { new: true }
+    );
+
+    if (!result) {
+      return res.status(500).send({ msg: "Unable to update user password" });
+    }
+
+    // Success
+    
+    return res.status(200).send({ msg: "User password updated successfully" });
+
+  } catch (err) {
+    // Error handling
+    console.error(err);
+    return res.status(500).send({ msg: "Unable to update user password" });
   }
 };
 
