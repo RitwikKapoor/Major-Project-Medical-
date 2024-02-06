@@ -44,19 +44,15 @@ const Register = () => {
       .then((res) => {
         if (res.status === 201) {
           toast.success(res.data.msg);
-          setTimeout(() => {
-            dispatch(setLoading(false));
-            navigate("/login");
-          }, 1000);
+          dispatch(setLoading(false));
+          navigate("/login");
         } else {
           throw new Error("Unexpected response");
         }
       })
       .catch((error) => {
-        setTimeout(() => {
-          dispatch(setLoading(false));
-          toast.error(error.response.data.msg);
-        }, 1000);
+        dispatch(setLoading(false));
+        toast.error(error.response.data.msg);
       });
   };
 
@@ -130,7 +126,7 @@ const Register = () => {
                     value={formData.gender}
                     onChange={handleInputChange}
                     name="gender"
-                    id="gender" 
+                    id="gender"
                     className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
                   >
                     <option value="">Select</option>

@@ -135,7 +135,6 @@ export const changepassword = async (req, res) => {
     }
 
     // Success
-    
     return res.status(200).send({ msg: "User password updated successfully" });
 
   } catch (err) {

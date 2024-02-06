@@ -7,7 +7,6 @@ const ApplyDoctor = lazy(() => import("../../pages/ApplyDoctor.jsx"));
 import Home from "../../pages/Home.jsx";
 import Login from "../../pages/Login.jsx";
 import Register from "../../pages/Register.jsx";
-import ChangePassword from "../../pages/ChangePassword.jsx";
 import Doctors from "../../pages/Doctors.jsx";
 import Loader from "../../comman/Loader/Loader.jsx";
 import { Admin, Protected, Public, Doctor, User } from "../../utils/route.jsx";
@@ -65,7 +64,7 @@ const Router = () => {
         element={
           <Suspense fallback={<Loader />}>
             <Admin>
-              <Navigate to="/dashboard/users" replace />
+            <Navigate to="/dashboard/main" replace />
             </Admin>
           </Suspense>
         }

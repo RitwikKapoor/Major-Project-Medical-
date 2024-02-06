@@ -1,21 +1,12 @@
 import Review from "../models/ReviewModel.js";
 import Doctor from "../models/DoctorModel.js";
 
-export const getAllReviews = async (req, res) => {
-  try {
-    const reviews = await Review.find({});
-    res.status(200).send(reviews);
-  } catch (err) {
-    res.status(404).send("Reviews not found");
-  }
-};
-
 export const createReview = async (req, res) => {
   try {
-    const new_review = await Review({
+    const new_review = new Review({
       doctorId: req.params.id,
       userId: req.locals,
-      reviewText: req.body.text,
+      reviewText: req.body.reviewText,
       rating: req.body.rating,
     });
 

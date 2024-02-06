@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaUser, FaUserMd, FaFileAlt } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
@@ -70,6 +71,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         <div>
 
         <ul className="mb-6 flex flex-col gap-1.5">
+        <li className="list-none">
+            <NavLink
+              to="/dashboard"
+              className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
+                pathname === "/dashboard" && "bg-graydark "
+              }`}
+            >
+              <MdDashboard />
+              Main Dashboard
+            </NavLink>
+          </li>
           <li className="list-none">
             <NavLink
               to="/dashboard/users"

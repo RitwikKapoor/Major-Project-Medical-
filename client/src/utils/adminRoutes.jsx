@@ -5,8 +5,14 @@ const Applications = lazy(() =>
 );
 const Doctors = lazy(() => import("../components/Admin/AdminAllDoctors.jsx"));
 const Users = lazy(() => import("../components/Admin/AdminAllUsers.jsx"));
+const Main = lazy(() => import("../components/Admin/AdminMainDashboard.jsx"));
 
 const coreRoutes = [
+  {
+    path: "/dashboard/main",
+    title: "Main",
+    component: Main,
+  },
   {
     path: "/dashboard/users",
     title: "All Users",

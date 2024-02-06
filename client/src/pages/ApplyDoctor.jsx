@@ -104,20 +104,16 @@ const ApplyDoctor = () => {
       })
       .then((res) => {
         if (res.status === 201) {
-          toast.success(res.data.msg);
-          setTimeout(() => {
+          toast.success(res.data.msg);  
             dispatch(setLoading(false));
             navigate("/home");
-          }, 1000);
         } else {
           throw new Error("Unexpected response");
         }
       })
       .catch((error) => {
-        setTimeout(() => {
           dispatch(setLoading(false));
           toast.error(error.response.data.msg);
-        }, 1000);
       });
   };
 

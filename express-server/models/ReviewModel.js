@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import Doctor from "./DoctorModel.js";
 
 const ReviewSchema = new Schema(
   {
@@ -48,10 +49,12 @@ ReviewSchema.statics.calcAverageRatings = async function (doctorId) {
       },
     },
   ]);
+
+  const averageRating = Math.round(stats[0].avgRating * 100) / 100;
   
   await Doctor.findByIdAndUpdate(doctorId, {
     totalRating: stats[0].numOfRating,
-    averageRating: stats[0].avgRating
+    averageRating: averageRating
   })
 };
 
