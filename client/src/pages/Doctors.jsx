@@ -11,10 +11,10 @@ const Doctors = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.root);
 
-  const getAllDoctors = (e) => {
+  const getAllDoctors = () => {
     dispatch(setLoading(true));
     axios
-      .get(`${import.meta.env.VITE_APP_BASE_URL}/doctor/getAllDoctors `)
+      .get(`${import.meta.env.VITE_APP_BASE_URL}/doctor/getAllDoctors`)
       .then((res) => {
         if (res.status === 200) {
           setDoctors(res.data);
@@ -34,30 +34,21 @@ const Doctors = () => {
   }, []);
 
   return (
-    <>
-      <section className="bg-[#fff9ea]">
-        <div className="text-center">
-          <h2 className="heading">Find a Doctor</h2>
-        
+    <section className="bg-[#fff9ea] p-8">
+      <div className="container mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-8">Find a Doctor</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 justify-center">
+          {doctors.map((doctor, i) => (
+            <DoctorCard key={i} doctor={doctor} />
+          ))}
         </div>
-      </section>
-
-      <section>
-        {loading ? (
-          <div className="flex justify-center items-center">
+        {loading && (
+          <div className="flex justify-center items-center mt-8">
             <BounceLoader color="#000000" />
           </div>
-        ) : (
-          <div className="container">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 lg:ml-16 md:ml-6 md:gap-14 lg:gap-44">
-              {doctors.map((doctor, i) => (
-                <DoctorCard key={i} doctor={doctor} />
-              ))}
-            </div>
-          </div>
         )}
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

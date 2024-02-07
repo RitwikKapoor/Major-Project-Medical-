@@ -77,28 +77,28 @@ export const getAllDoctors = async (req, res) => {
 
 export const deleteDoctor = async (req, res) => {
   try {
-    await Doctor.findOneAndDelete({ userId: req.body.id });
+    await Doctor.findOneAndDelete({ _id: req.body.doctorId });
     await User.findOneAndUpdate(
-      { _id: req.body.id },
+      { _id: req.body.doctorUserId },
       {
         isDoctor: false,
       }
     );
 
-    await Appointment.deleteMany({ userId: req.body.id })
+    await Appointment.deleteMany({ doctorId: req.body.doctorId })
       .then((res) => {
         console.log(
-          `Deleted ${res.deletedCount} appointments with userId '${req.body.id}'.`
+          `Deleted ${res.deletedCount} appointments with doctorId '${req.body.doctorId}'.`
         );
       })
       .catch((err) => {
         console.error(err);
       });
 
-    await Review.deleteMany({ userId: req.body.id })
+    await Review.deleteMany({ doctorId: req.body.doctorId })
       .then((res) => {
         console.log(
-          `Deleted ${res.deletedCount} reviews with userId '${req.body.id}'.`
+          `Deleted ${res.deletedCount} reviews with doctorId '${req.body.doctorId}'.`
         );
       })
       .catch((err) => {

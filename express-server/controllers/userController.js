@@ -97,25 +97,27 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-
 export const changepassword = async (req, res) => {
   try {
-
-    if(req.body.newPassword === req.body.currentPassword){
-      return res.status(400).json({ msg: "Old Password and New Password is same" });
+    if (req.body.newPassword === req.body.currentPassword) {
+      return res
+        .status(400)
+        .json({ msg: "Old Password and New Password is same" });
     }
     // Step 1: Find the user by email
     const user = await User.findById(req.locals);
-    
+
     if (!user) {
       return res.status(400).json({ msg: "No such user, register first" });
     }
 
     // Step 2: Compare passwords
-    const isMatch = await bcrypt.compare(req.body.currentPassword, user.password);
-    
+    const isMatch = await bcrypt.compare(
+      req.body.currentPassword,
+      user.password
+    );
+
     if (!isMatch) {
-      
       return res.status(400).json({ msg: "Current password is incorrect" });
     }
 
@@ -136,7 +138,6 @@ export const changepassword = async (req, res) => {
 
     // Success
     return res.status(200).send({ msg: "User password updated successfully" });
-
   } catch (err) {
     // Error handling
     console.error(err);
@@ -172,6 +173,9 @@ export const deleteUser = async (req, res) => {
         console.error(err);
       });
 
+    const reviews = await Review.find({ userId: req.body.id });
+    const doctorIds = new Set(reviews.map((review) => review.doctorId));
+
     await Review.deleteMany({ userId: req.body.id })
       .then((res) => {
         console.log(
@@ -181,6 +185,12 @@ export const deleteUser = async (req, res) => {
       .catch((err) => {
         console.error(err);
       });
+
+    // to recalculate ratings when a user is deleted  
+    for (const doctorId of doctorIds) {
+      await Review.calcAverageRatings(doctorId);
+    }
+
     res.status(200).json({ msg: "User deleted successfully" });
   } catch (err) {
     res.status(500).json({ msg: "Unable to delete user" });
