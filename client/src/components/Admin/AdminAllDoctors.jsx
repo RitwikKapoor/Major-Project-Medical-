@@ -28,7 +28,7 @@ const AdminAllDoctors = () => {
       });
   };
 
-  const deleteDoctor = (id) => {
+  const deleteDoctor = (doctorUserId, doctorId) => {
     const confirm = window.confirm("Are you sure you want to delete?");
     if (confirm) {
       axios
@@ -37,7 +37,7 @@ const AdminAllDoctors = () => {
 
           {
             withCredentials: true,
-            data: { id },
+            data: { doctorUserId, doctorId },
           }
         )
         .then((res) => {
@@ -110,7 +110,7 @@ const AdminAllDoctors = () => {
                   <button
                     className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                     onClick={() => {
-                      deleteDoctor(ele?.userId._id);
+                      deleteDoctor(ele?.userId._id, ele?._id);
                     }}
                   >
                     Remove

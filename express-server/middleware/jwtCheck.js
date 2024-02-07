@@ -10,7 +10,6 @@ const jwtCheck = (req, res, next) => {
     req.locals = verifyToken.userId;
     next();
   } catch (err) {
-    console.log("jwt failed");
     res.status(401).send({
       msg: "Auth Failed",
     });

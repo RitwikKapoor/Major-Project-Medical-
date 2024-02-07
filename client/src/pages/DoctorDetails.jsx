@@ -25,7 +25,6 @@ const DoctorDetails = () => {
       .then((res) => {
         if (res.status === 200) {
           setDetails(res.data);
-          console.log(res?.data?.reviews);
           dispatch(setLoading(false));
         } else {
           throw new Error("Unexpected response");
