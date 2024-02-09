@@ -124,7 +124,7 @@ const ProfileSettings = () => {
         </label>
       </div>
 
-      <div className="mt-7">
+      <div className="mt-7 mb-8">
         <button
           disabled={loading && true}
           type="submit"

@@ -1,9 +1,233 @@
-import React from 'react'
+import React from "react";
+import heroImg01 from "../assests/hero-img01.png";
+import heroImg02 from "../assests/hero-img02.png";
+import heroImg03 from "../assests/hero-img03.png";
+import icon01 from "../assests/icon01.png";
+import icon02 from "../assests/icon02.png";
+import icon03 from "../assests/icon03.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis aliquid architecto officia! Officia nulla natus in commodi sapiente eveniet ipsa, asperiores perspiciatis maiores odit excepturi eius neque illo accusamus repellat veniam vitae, fugit nemo voluptatibus facere minima nesciunt! Eum eveniet voluptatibus numquam, cumque facere officia veniam assumenda! Delectus tenetur facilis consequuntur cumque assumenda, rerum quaerat culpa dolores laborum asperiores omnis sit accusamus quibusdam iste accusantium? Obcaecati mollitia sapiente eum facilis qui officia asperiores molestiae dolorem rerum amet totam maxime ratione at optio, adipisci sit similique exercitationem! Voluptate perferendis laboriosam quis consequuntur, sit veniam quidem reprehenderit! Voluptates ipsam ab cum reprehenderit recusandae? Odio temporibus non tempora perferendis quas ullam repudiandae inventore et atque? Nostrum tempore nesciunt facilis nobis possimus distinctio quidem numquam. Cumque placeat sit numquam voluptatem sed veritatis eveniet. Aliquid accusantium iste soluta? Accusamus qui delectus voluptates ipsam ratione dolor eveniet repellat commodi a, quaerat maiores aperiam, ullam minima similique nam provident. Cupiditate tempora sed officia quisquam! Ut quisquam aperiam magni commodi alias numquam minima voluptates nobis ratione beatae, ad eum et repellat error provident deleniti. Amet beatae, neque quaerat impedit eum, officiis atque sunt asperiores quis quod earum enim molestias, esse nesciunt ullam ea est reiciendis libero nam qui nostrum. A aspernatur ducimus consequatur, animi sed sunt. Dolorum sequi dicta quos excepturi cum ad, magnam temporibus adipisci ratione sint blanditiis nam officiis impedit maxime totam quia laudantium? Dignissimos rerum delectus, ut eaque ratione sequi praesentium eveniet distinctio incidunt est odio neque doloremque, accusamus dolorum, animi nihil necessitatibus deleniti. In asperiores debitis reiciendis officia consequatur vitae expedita, illo dicta aspernatur dolorem inventore natus nesciunt ullam numquam, est saepe officiis vel vero iusto quia? Nobis quia, commodi voluptatem pariatur, laborum asperiores delectus eaque vitae rem eius optio error labore, earum voluptate libero dolorum aspernatur excepturi suscipit! Explicabo ratione soluta, perspiciatis recusandae eveniet aliquam omnis voluptatibus quas, et odio animi facilis doloremque veritatis dignissimos quasi nam nesciunt maxime! Quod saepe ullam unde sint, assumenda hic officiis iusto odit quia dicta ipsam temporibus dolorum corporis reiciendis culpa aspernatur fugit voluptatum nesciunt! Quod maiores labore voluptate, voluptatum inventore odio sequi perspiciatis eveniet facilis, doloremque illo? Adipisci vitae iusto sequi, tenetur amet blanditiis minima quas totam iure fugit consequatur odio quidem, modi ratione reprehenderit nostrum voluptatem accusamus voluptatum impedit assumenda voluptas officiis corporis et. Velit deleniti autem quisquam similique dolor? Praesentium quidem repellat voluptatum tempora velit ducimus, culpa laudantium debitis, in, itaque pariatur. Laboriosam aperiam quia a numquam fugiat, eligendi delectus autem, alias quibusdam accusamus ex perferendis nobis repudiandae quidem id tempora. Repellat architecto nemo, consequatur unde, repellendus fugit a quidem, neque molestias inventore reprehenderit ipsa facilis velit. Totam alias molestias delectus molestiae illum sunt reiciendis in officia amet, itaque maxime perspiciatis minima natus eius tempore, eveniet illo rerum beatae, debitis architecto dolor! Est, veniam aut omnis obcaecati quis ab doloribus nostrum accusantium! Alias dignissimos eveniet maxime recusandae modi quod illo minima distinctio ipsa cumque, possimus itaque at doloremque eius! Dignissimos fugit temporibus mollitia nostrum eligendi neque expedita quasi adipisci autem ratione nisi aut laudantium qui eum itaque quod, distinctio officia. Ut nostrum dolorum odit sed repellendus? Neque, quasi! Eveniet suscipit aliquam aspernatur, officia molestias hic ab sequi laborum. Veniam quia iste porro incidunt numquam at quam quidem praesentium. Repudiandae, tenetur delectus aliquid atque accusantium optio, vero adipisci ex odit nulla enim, nostrum nemo corrupti pariatur eveniet dolore libero! Vitae at sed repudiandae quae fugiat? Eos repellendus itaque animi, aut perspiciatis eaque qui temporibus omnis quam odio nihil vitae assumenda? Voluptas aspernatur in incidunt voluptatibus doloremque, commodi at sint dolore, nisi repellendus qui aut eum! Maxime, dicta eligendi assumenda minima quis voluptas praesentium voluptatem expedita laudantium magni quae cum accusantium beatae qui. Ex totam deserunt perspiciatis nam est dignissimos quaerat, corporis, minus nihil sed nisi optio recusandae at laborum harum sit neque animi aspernatur ipsam molestias alias accusamus quae voluptates sequi. Sed quam rerum a. Velit qui impedit doloremque voluptas, hic fugit illo quos dolor in est quam! Pariatur maiores placeat consequatur laudantium dignissimos, rem excepturi voluptatem, recusandae ad, accusamus vero tempora minus. Qui sapiente, modi quos asperiores fugit quam sed nemo, optio eligendi libero in ex ab porro repudiandae deleniti tempore praesentium perferendis laudantium? Fuga recusandae dignissimos ad voluptatibus animi veritatis? Temporibus, magnam ratione. Neque reprehenderit, magni eius, tempora beatae laboriosam soluta fuga ad sequi possimus quod est earum veritatis repudiandae aperiam nesciunt dolores officiis asperiores. Nobis temporibus, earum dolor voluptatibus quia repudiandae inventore veritatis fuga, totam voluptate incidunt dolore iusto. Consequuntur, porro temporibus deleniti possimus, reiciendis hic voluptatum aut consectetur est ullam adipisci voluptatem nulla vitae alias ex recusandae corporis, fugit voluptas quas qui inventore? Eius, provident fuga, maxime recusandae pariatur, nobis delectus autem consequatur laboriosam sunt dolor sit eligendi tempora necessitatibus soluta? Saepe nulla, eius magni ducimus deserunt nobis omnis ratione ipsa rerum. Ipsam et alias, ad perspiciatis magnam non aliquid quasi reiciendis expedita vero, inventore omnis modi reprehenderit exercitationem! Voluptate eveniet rem tenetur quidem doloribus sit facilis corrupti incidunt dolor perferendis culpa quis iusto dolorem tempore nostrum, nesciunt animi commodi. Ea, laborum. Quos quis voluptates beatae odio unde dicta quidem excepturi quia architecto, aliquam consectetur voluptatibus rerum quas natus fugit illo voluptatum? Necessitatibus, molestiae velit possimus, expedita impedit nesciunt reprehenderit, debitis nemo quod sapiente blanditiis qui at earum ipsam quidem culpa doloribus optio eaque! Maxime maiores repudiandae, quia omnis commodi veritatis sed, quos voluptatum nobis eaque sint consequatur voluptate fugiat ullam eveniet iure qui cumque architecto possimus ipsam? Odit dolorem quas maxime quae minus ipsum doloribus et sit nemo eum hic quis laudantium voluptatibus, debitis ex dolore sint aliquam commodi quaerat nostrum error officia architecto odio. Iste, laboriosam explicabo quis similique tenetur saepe iusto dicta at illo itaque voluptatum doloribus error quasi laudantium fuga? Asperiores aliquid eius accusantium fuga. Sequi eius corrupti, rerum quaerat quisquam distinctio repellendus maxime minus consectetur dignissimos at nihil dolores maiores a illo vitae voluptate neque dolor nostrum expedita debitis aspernatur similique error provident. Hic aliquam illum voluptatem, velit ipsum porro sapiente! Adipisci voluptas ad numquam ea expedita qui reprehenderit! Soluta dolores nulla ipsam nam doloribus aut.</p>
-  )
-}
+    <>
+      <section className="hero__section pt-[60px] 2xl:h-[800px]">
+        <div className="container">
+          <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
+            <div>
+              <div className="lg:w-[570px]">
+                <h1 className="text-[36px] leading-[46px] text-headingColor font-[800] md:text-[60px] md:leading-[70px]">
+                  We help people live a healthy life!
+                </h1>
+                <p className="text__para">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Minima alias rerum quos temporibus repellat nostrum
+                  exercitationem tenetur repellendus magni impedit.
+                </p>
+                <button
+                  className="btn"
+                  onClick={() => {
+                    navigate("/doctors");
+                  }}
+                >
+                  View Doctors
+                </button>
+              </div>
+              <div className="mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]">
+                <div>
+                  <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor ">
+                    900+
+                  </h2>
+                  <span className="w-[100px] h-2 bg-purpleColor rounded-full block mt-[-14px]"></span>
+                  <p className="text__para">Ratings</p>
+                </div>
+                <div>
+                  <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor ">
+                    50+
+                  </h2>
+                  <span className="w-[100px] h-2 bg-irisBlueColor rounded-full block mt-[-14px]"></span>
+                  <p className="text__para">Doctors</p>
+                </div>
+                <div>
+                  <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor ">
+                    30+
+                  </h2>
+                  <span className="w-[100px] h-2 bg-yellowColor rounded-full block mt-[-14px]"></span>
+                  <p className="text__para">Years of Experience</p>
+                </div>
+              </div>
+            </div>
 
-export default Home
+            <div className="flex gap-[30px] justify-end ">
+              <div>
+                <img className="w-full" src={heroImg01} alt="" />
+              </div>
+              <div className="mt-[30px]">
+                <img className="w-full mb-[30px]" src={heroImg02} alt="" />
+                <img className="w-full" src={heroImg03} alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section> 
+        <div className="container">
+          <div className="lg:w-[470px] mx-auto">
+            <h2 className="heading text-center ">
+              Providing the best medical services
+            </h2>
+          </div>
+          <p className="text__para text-center">
+            World class care for everyone. Our health system offers unmatched
+            expert health care
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
+          <div className="py-[30px] px-5">
+            <div className="flex items-center justify-center">
+              <img src={icon01} />
+            </div>
+            <div className="mt-[30px]">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                Find a Doctor
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4 text-center">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+          </div>
+          <div className="py-[30px] px-5">
+            <div className="flex items-center justify-center">
+              <img src={icon02} />
+            </div>
+            <div className="mt-[30px]">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                Find Clinic
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4 text-center">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+          </div>
+          <div className="py-[30px] px-5">
+            <div className="flex items-center justify-center">
+              <img src={icon03} />
+            </div>
+            <div className="mt-[30px]">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                Book Appointment
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4 text-center">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="flex justify-between gap-[50px] lg:gap-[130px] xl:gap-0 flex-col lg:flex-row">
+            <div className="relative xl:w-[450px] z-10 order-2 lg:order-1">
+              <img src={heroImg01} alt="" className="h-[450px]"/>
+            </div>
+
+            <div className="w-full xl:w-[700px] order-1 lg:order-2">
+              <div className="heading">Proud to be one of the nations best</div>
+              <p className="text__para">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis aliquid vitae provident quod voluptatibus. Quisquam
+                totam perferendis praesentium ab laudantium repellendus
+                voluptatem autem ratione reprehenderit veritatis facilis dolor
+                saepe velit, atque quis neque ipsam molestiae, beatae ullam
+                veniam. Id, ratione!
+              </p>
+              <p className="text__para">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                facilis veniam dolore commodi pariatur eligendi excepturi
+                eveniet. Voluptatum, velit. Quis voluptatem explicabo est qui
+                delectus excepturi molestiae repudiandae nam animi!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="xl:w-[400px] mx-auto">
+            <h2 className="heading text-center">
+              Our best medical services
+            </h2>
+          </div>
+          <p className="text__para text-center">
+            World class care for everyone. Our health system offers unmatched
+            expert health care
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px] mx-14">
+          <div className="py-[30px] px-3 lg:px-5">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700]">
+                Neurology
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+            <div className="py-[30px] px-3 lg:px-5">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700]">
+                Neurology
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+            <div className="py-[30px] px-3 lg:px-5">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700]">
+                Neurology
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+            <div className="py-[30px] px-3 lg:px-5">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700]">
+                Neurology
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+            <div className="py-[30px] px-3 lg:px-5">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700]">
+                Neurology
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+            <div className="py-[30px] px-3 lg:px-5">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700]">
+                Neurology
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400]mt-4">
+                World class care for everyone. Our health system offers
+                unmatched, expert health care. From the lab to clinic
+              </p>
+            </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Home;

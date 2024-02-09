@@ -13,6 +13,7 @@ import { Admin, Protected, Public, Doctor, User } from "../../utils/route.jsx";
 import adminRoutes from "../../utils/adminRoutes.jsx";
 import DoctorDetails from "../../pages/DoctorDetails.jsx";
 import ProfileDashboard from "../ProfileDashboard/ProfileDashboard.jsx";
+import PageNotFound from "../../pages/PageNotFound.jsx";
 
 const Router = () => {
   return (
@@ -64,7 +65,7 @@ const Router = () => {
         element={
           <Suspense fallback={<Loader />}>
             <Admin>
-            <Navigate to="/dashboard/main" replace />
+              <Navigate to="/dashboard/main" replace />
             </Admin>
           </Suspense>
         }
@@ -87,6 +88,7 @@ const Router = () => {
           );
         })}
       </Route>
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };
