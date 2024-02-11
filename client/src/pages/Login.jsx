@@ -30,7 +30,7 @@ const Login = () => {
         if (res.status === 200) {
           dispatch(setLogin());
           dispatch(setLoading(false));
-          // window.location.reload();
+          window.location.reload();
         } else {
           throw new Error("Unexpected response");
         }
