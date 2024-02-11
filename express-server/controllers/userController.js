@@ -40,10 +40,11 @@ export const login = async (req, res) => {
     const token = jwt.sign({ userId: userPresent._id }, process.env.JWT_SECRET);
 
     res.cookie("my_cookie", token, {
+      domain: process.env.FRONTEND_URL / login,
       httpOnly: true,
       expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      sameSite: "none", 
-      secure: true
+      sameSite: "none",
+      secure: true,
     });
 
     return res.status(200).json({
@@ -188,7 +189,7 @@ export const deleteUser = async (req, res) => {
         console.error(err);
       });
 
-    // to recalculate ratings when a user is deleted  
+    // to recalculate ratings when a user is deleted
     for (const doctorId of doctorIds) {
       await Review.calcAverageRatings(doctorId);
     }
