@@ -40,7 +40,7 @@ export const login = async (req, res) => {
     const token = jwt.sign({ userId: userPresent._id }, process.env.JWT_SECRET);
 
     res.cookie("my_cookie", token, {
-      httpOnly: true,
+      httpOnly: false,
       expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       sameSite: "none",
       secure: true,
