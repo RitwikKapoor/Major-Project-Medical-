@@ -16,7 +16,7 @@ export const applyForDoctor = async (req, res) => {
 
     return res.status(201).send({ msg: "Application submitted successfully" });
   } catch (err) {
-    res.status(500).send({ msg: "Unable to submit application" });
+    return res.status(500).send({ msg: "Unable to submit application" });
   }
 };
 
@@ -32,7 +32,7 @@ export const getPendingDoctorApplications = async (req, res) => {
       });
     return res.status(200).send(pending_doctor_applications);
   } catch (err) {
-    res.status(500).send({ msg: "Unable to get pending doctor applications" });
+    return res.status(500).send({ msg: "Unable to get pending doctor applications" });
   }
 };
 
@@ -47,7 +47,7 @@ export const acceptDoctor = async (req, res) => {
 
     return res.status(200).send({ msg: "Application accepted" });
   } catch (err) {
-    res.status(500).send({ msg: "Error while accepting doctor application " });
+    return res.status(500).send({ msg: "Error while accepting doctor application " });
   }
 };
 
@@ -57,7 +57,7 @@ export const rejectDoctor = async (req, res) => {
 
     return res.status(200).send({ msg: "Application rejected" });
   } catch (error) {
-    res.status(500).send({ msg: "Error while rejecting application" });
+    return res.status(500).send({ msg: "Error while rejecting application" });
   }
 };
 

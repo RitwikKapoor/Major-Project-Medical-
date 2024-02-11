@@ -37,16 +37,24 @@ export const login = async (req, res) => {
       return res.status(400).json({ msg: "Incorrect password" });
     }
 
-    const token = jwt.sign({ userId: userPresent._id }, process.env.JWT_SECRET);
+    if (verifyPass) {
+      const token = jwt.sign(
+        { userId: userPresent._id },
+        process.env.JWT_SECRET
+      );
 
-    res.cookie("my_cookie", token, {
-      httpOnly: true,
-      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    });
+      res.cookie("my_cookie", token, {
+        domain: process.env.FRONTEND_URL/login,
+        httpOnly: true,
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        sameSite: "none",
+        secure: true,
+      });
 
-    return res.status(200).json({
-      msg: "User logged in successfully",
-    });
+      return res.status(200).json({
+        msg: "User logged in successfully",
+      });
+    }
   } catch (err) {
     return res.status(500).json({ msg: "Unable to login user" });
   }
@@ -186,7 +194,7 @@ export const deleteUser = async (req, res) => {
         console.error(err);
       });
 
-    // to recalculate ratings when a user is deleted  
+    // to recalculate ratings when a user is deleted
     for (const doctorId of doctorIds) {
       await Review.calcAverageRatings(doctorId);
     }
