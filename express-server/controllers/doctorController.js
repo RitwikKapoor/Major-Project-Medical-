@@ -71,7 +71,7 @@ export const getAllDoctors = async (req, res) => {
       });
     return res.status(200).send(doctors);
   } catch (err) {
-    res.status(500).send({ msg: "Unable to get all doctors" });
+    return res.status(500).send({ msg: "Unable to get all doctors" });
   }
 };
 
@@ -105,10 +105,10 @@ export const deleteDoctor = async (req, res) => {
         console.error(err);
       });
 
-    res.status(200).send({ msg: "Doctor deleted successfully" });
+    return res.status(200).send({ msg: "Doctor deleted successfully" });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ msg: "Unable to delete doctor" });
+    return res.status(500).send({ msg: "Unable to delete doctor" });
   }
 };
 
@@ -125,6 +125,6 @@ export const getSingleDoctor = async (req, res) => {
     return res.status(200).send(doctor);
   } catch (err) {
     console.error(err);
-    res.status(500).send({ msg: "Cannot fetch doctor details" });
+    return res.status(500).send({ msg: "Cannot fetch doctor details" });
   }
 };

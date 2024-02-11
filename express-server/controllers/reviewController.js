@@ -18,6 +18,6 @@ export const createReview = async (req, res) => {
 
     return res.status(201).send({msg:"Review Submitted"});
   } catch (err) {
-    res.status(500).send({msg: "Unable to create review"});
+    return res.status(500).send({msg: "Unable to create review"});
   }
 };

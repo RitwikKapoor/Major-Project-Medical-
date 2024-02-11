@@ -48,7 +48,7 @@ export const login = async (req, res) => {
       msg: "User logged in successfully",
     });
   } catch (err) {
-    res.status(500).json({ msg: "Unable to login user" });
+    return res.status(500).json({ msg: "Unable to login user" });
   }
 };
 
@@ -66,7 +66,7 @@ export const getUserInfo = async (req, res) => {
     );
     return res.status(200).send(user);
   } catch (error) {
-    res.status(500).json({ msg: "Unable to get user" });
+    return res.status(500).json({ msg: "Unable to get user" });
   }
 };
 
@@ -93,7 +93,7 @@ export const updateProfile = async (req, res) => {
     return res.status(200).send({ msg: "User updated successfully" });
   } catch (err) {
     console.error(err);
-    res.status(500).send({ msg: "Unable to update user" });
+    return res.status(500).send({ msg: "Unable to update user" });
   }
 };
 
@@ -152,7 +152,7 @@ export const getAllUsers = async (req, res) => {
     );
     return res.status(200).send(users);
   } catch (err) {
-    res.status(500).send({ msg: "Unable to get all users" });
+    return res.status(500).send({ msg: "Unable to get all users" });
   }
 };
 
@@ -191,8 +191,8 @@ export const deleteUser = async (req, res) => {
       await Review.calcAverageRatings(doctorId);
     }
 
-    res.status(200).json({ msg: "User deleted successfully" });
+    return res.status(200).json({ msg: "User deleted successfully" });
   } catch (err) {
-    res.status(500).json({ msg: "Unable to delete user" });
+    return res.status(500).json({ msg: "Unable to delete user" });
   }
 };
