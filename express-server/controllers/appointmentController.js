@@ -16,7 +16,7 @@ export const bookAppointment = async (req, res) => {
     const result = await appointment.save();
     return res.status(201).send({ msg: "Appointment Booked" });
   } catch (err) {
-    res.status(500).send({ msg: "Unable to book appointment" });
+    return res.status(500).send({ msg: "Unable to book appointment" });
   }
 };
 
@@ -64,10 +64,10 @@ export const getUserAppointments = async (req, res) => {
       },
     ]);
 
-    res.status(200).json(app);
+    return res.status(200).json(app);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Unable to get all appointments");
+    return res.status(500).send("Unable to get all appointments");
   }
 };
 
@@ -130,9 +130,9 @@ export const getDoctorAppointments = async (req, res) => {
       },
     ]);
 
-    res.status(200).json(app);
+    return res.status(200).json(app);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Unable to get all appointments");
+    return res.status(500).send("Unable to get all appointments");
   }
 };
