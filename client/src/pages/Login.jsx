@@ -37,7 +37,11 @@ const Login = () => {
       })
       .catch((error) => {
         dispatch(setLoading(false));
-        toast.error(error.response.data.msg);
+        const errorMessage =
+          error.response.data.msg ||
+          error.message ||
+          "An unknown error occurred";
+        toast.error(errorMessage);
       });
   };
 

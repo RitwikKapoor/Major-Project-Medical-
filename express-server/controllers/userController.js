@@ -18,7 +18,7 @@ export const register = async (req, res) => {
       return res.status(500).json({ msg: "Unable to register user" });
     }
     return res.status(201).json({ msg: "User registered successfully" });
-  } catch (err) {
+  } catch (error) {
     return res.status(500).json({ msg: "Unable to register user" });
   }
 };
@@ -49,7 +49,7 @@ export const login = async (req, res) => {
     return res.status(200).json({
       msg: "User logged in successfully",
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(500).json({ msg: "Unable to login user" });
   }
 };
@@ -93,8 +93,8 @@ export const updateProfile = async (req, res) => {
       return res.status(500).send({ msg: "Unable to update user" });
     }
     return res.status(200).send({ msg: "User updated successfully" });
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     return res.status(500).send({ msg: "Unable to update user" });
   }
 };
@@ -140,9 +140,9 @@ export const changepassword = async (req, res) => {
 
     // Success
     return res.status(200).send({ msg: "User password updated successfully" });
-  } catch (err) {
+  } catch (error) {
     // Error handling
-    console.error(err);
+    console.error(error);
     return res.status(500).send({ msg: "Unable to update user password" });
   }
 };
@@ -153,7 +153,7 @@ export const getAllUsers = async (req, res) => {
       "firstname lastname email gender photo"
     );
     return res.status(200).send(users);
-  } catch (err) {
+  } catch (error) {
     return res.status(500).send({ msg: "Unable to get all users" });
   }
 };
@@ -171,8 +171,8 @@ export const deleteUser = async (req, res) => {
           `Deleted ${res.deletedCount} appointments with userId '${req.body.id}'.`
         );
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
 
     const reviews = await Review.find({ userId: req.body.id });
@@ -184,8 +184,8 @@ export const deleteUser = async (req, res) => {
           `Deleted ${res.deletedCount} reviews with userId '${req.body.id}'.`
         );
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
 
     // to recalculate ratings when a user is deleted
@@ -194,7 +194,7 @@ export const deleteUser = async (req, res) => {
     }
 
     return res.status(200).json({ msg: "User deleted successfully" });
-  } catch (err) {
+  } catch (error) {
     return res.status(500).json({ msg: "Unable to delete user" });
   }
 };

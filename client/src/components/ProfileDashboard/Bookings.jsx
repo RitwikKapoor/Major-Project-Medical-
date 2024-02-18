@@ -31,8 +31,8 @@ const Bookings = ({ role }) => {
           throw new Error("Unexpected response");
         }
       })
-      .catch((err) => {
-        toast.error(err.response.data.msg);
+      .catch((error) => {
+        toast.error(error.response.data.msg);
         dispatch(setLoading(false));
       });
   };

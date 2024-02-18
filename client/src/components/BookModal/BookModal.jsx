@@ -33,8 +33,10 @@ const BookModal = ({ onClose, starttime, endtime }) => {
       )
       .then((res) => {
         if (res.status === 201) {
-          toast.success(res.data.msg);
-            dispatch(setLoading(false));
+          dispatch(setLoading(false));
+          if(res.data.session.url){
+            window.location.href = res.data.session.url;
+          }
         } else {
           throw new Error("Unexpected response");
         }
@@ -106,5 +108,4 @@ const BookModal = ({ onClose, starttime, endtime }) => {
 };
 
 export default BookModal;
-
 

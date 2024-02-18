@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../redux/rootSlice.js";
 import axios from "axios";
 import BounceLoader from "react-spinners/BounceLoader";
+import { toast } from "react-toastify";
 
 const DoctorDetails = () => {
   const [tab, setTab] = useState("about");
@@ -30,8 +31,8 @@ const DoctorDetails = () => {
           throw new Error("Unexpected response");
         }
       })
-      .catch((err) => {
-        toast.error(err.response.data.msg);
+      .catch((error) => {
+        toast.error(error.message);
         dispatch(setLoading(false));
       });
   };
