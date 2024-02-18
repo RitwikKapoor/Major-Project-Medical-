@@ -21,8 +21,10 @@ mongoose
   .then(() => {
     console.log("MongoDB connected");
   })
-  .catch((err) => console.log(`MongoDB connection error: ${err.message}`));
-
+  .catch((error) => console.log(`MongoDB connection error: ${error.message}`));
+  
+  
+app.use("/api/appoint/webhook", express.raw({ type: "*/*" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(

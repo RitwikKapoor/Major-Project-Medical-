@@ -14,6 +14,7 @@ import adminRoutes from "../../utils/adminRoutes.jsx";
 import DoctorDetails from "../../pages/DoctorDetails.jsx";
 import ProfileDashboard from "../ProfileDashboard/ProfileDashboard.jsx";
 import PageNotFound from "../../pages/PageNotFound.jsx";
+import CheckoutSuccess from "../../pages/CheckoutSuceess.jsx";
 
 const Router = () => {
   return (
@@ -48,6 +49,14 @@ const Router = () => {
               <ApplyDoctor />
             </User>
           </Suspense>
+        }
+      />
+      <Route
+        path="/success"
+        element={
+          <User>
+            <CheckoutSuccess />
+          </User>
         }
       />
       <Route

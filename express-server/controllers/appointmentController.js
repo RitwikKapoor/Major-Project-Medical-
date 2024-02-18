@@ -1,24 +1,83 @@
 import Doctor from "../models/DoctorModel.js";
 import Appointment from "../models/AppointmentModel.js";
 import mongoose from "mongoose";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const bookAppointment = async (req, res) => {
   const { date, time } = req.body;
   try {
     const part = date.split("-");
     const formattedDate = `${part[2]}-${part[1]}-${part[0]}`;
-    const appointment = await Appointment({
-      date: formattedDate,
-      time,
-      doctorId: req.params.id,
-      userId: req.locals,
+
+    const docInfo = await Doctor.findById(req.params.id).select("fees");
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price_data: {
+            currency: "inr",
+            product_data: {
+              name: "Doctor Appointment",
+            },
+            unit_amount: docInfo.fees * 100,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      success_url: `${process.env.FRONTEND_URL}/success`,
+      cancel_url: `${process.env.FRONTEND_URL}/doctors/${req.params.id}`,
+      metadata: {
+        doctorId: req.params.id,
+        userId: req.locals,
+        date: formattedDate,
+        time,   
+      },
     });
-    const result = await appointment.save();
-    return res.status(201).send({ msg: "Appointment Booked" });
-  } catch (err) {
+
+    return res.status(201).send({ msg: "Appointment Booked", session });
+  } catch (error) {
+    console.error("Error booking appointment:", error);
     return res.status(500).send({ msg: "Unable to book appointment" });
   }
 };
+
+export const handleStripeWebhook = async (req, res) => {
+  const sig = req.headers["stripe-signature"];
+
+  try {
+    const event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+
+    console.log("event: ", event);
+
+    if (event.type === "checkout.session.completed") {
+      const session = event.data.object;
+      const { doctorId, userId, date, time } = session.metadata;
+      const appointment = await Appointment({
+        date,
+        time,
+        doctorId,
+        userId,
+      });
+      await appointment.save();
+      res.status(200).json({ received: true });
+    }
+  } catch (error) {
+    console.error("Error handling webhook event:", error);
+    res.status(400).json({ msg: "Webhook event handling failed" });
+  }
+};
+
+
 
 export const getUserAppointments = async (req, res) => {
   try {
@@ -65,9 +124,9 @@ export const getUserAppointments = async (req, res) => {
     ]);
 
     return res.status(200).json(app);
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send("Unable to get all appointments");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ msg: "Unable to get all appointments" });
   }
 };
 
@@ -131,8 +190,8 @@ export const getDoctorAppointments = async (req, res) => {
     ]);
 
     return res.status(200).json(app);
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send("Unable to get all appointments");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ msg: "Unable to get all appointments" });
   }
 };

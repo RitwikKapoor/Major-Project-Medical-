@@ -15,7 +15,7 @@ export const applyForDoctor = async (req, res) => {
     await doctor.save();
 
     return res.status(201).send({ msg: "Application submitted successfully" });
-  } catch (err) {
+  } catch (error) {
     return res.status(500).send({ msg: "Unable to submit application" });
   }
 };
@@ -31,8 +31,10 @@ export const getPendingDoctorApplications = async (req, res) => {
         select: "firstname lastname email",
       });
     return res.status(200).send(pending_doctor_applications);
-  } catch (err) {
-    return res.status(500).send({ msg: "Unable to get pending doctor applications" });
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ msg: "Unable to get pending doctor applications" });
   }
 };
 
@@ -46,8 +48,10 @@ export const acceptDoctor = async (req, res) => {
     );
 
     return res.status(200).send({ msg: "Application accepted" });
-  } catch (err) {
-    return res.status(500).send({ msg: "Error while accepting doctor application " });
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ msg: "Error while accepting doctor application " });
   }
 };
 
@@ -70,7 +74,7 @@ export const getAllDoctors = async (req, res) => {
         select: "firstname lastname gender email photo",
       });
     return res.status(200).send(doctors);
-  } catch (err) {
+  } catch (error) {
     return res.status(500).send({ msg: "Unable to get all doctors" });
   }
 };
@@ -91,8 +95,8 @@ export const deleteDoctor = async (req, res) => {
           `Deleted ${res.deletedCount} appointments with doctorId '${req.body.doctorId}'.`
         );
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
 
     await Review.deleteMany({ doctorId: req.body.doctorId })
@@ -101,13 +105,13 @@ export const deleteDoctor = async (req, res) => {
           `Deleted ${res.deletedCount} reviews with doctorId '${req.body.doctorId}'.`
         );
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
 
     return res.status(200).send({ msg: "Doctor deleted successfully" });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     return res.status(500).send({ msg: "Unable to delete doctor" });
   }
 };
@@ -123,8 +127,8 @@ export const getSingleDoctor = async (req, res) => {
       })
       .populate("reviews");
     return res.status(200).send(doctor);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     return res.status(500).send({ msg: "Cannot fetch doctor details" });
   }
 };
