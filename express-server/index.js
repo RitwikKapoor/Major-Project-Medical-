@@ -22,17 +22,19 @@ mongoose
     console.log("MongoDB connected");
   })
   .catch((error) => console.log(`MongoDB connection error: ${error.message}`));
-  
-  
+
 app.use("/api/appoint/webhook", express.raw({ type: "*/*" }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    credentials: true,
-    origin: process.env.FRONTEND_URL,
-  })
-);
+
+if (process.env.NODE_ENV === "development") {
+  app.use(
+    cors({
+      credentials: true,
+      origin: process.env.FRONTEND_URL,
+    })
+  );
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -46,3 +48,11 @@ app.use("/api/doctor", doctorRouter);
 app.use("/api/user", userRouter);
 app.use("/api/appoint", appointmentRouter);
 app.use("/api/review", reviewRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "./dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./dist/index.html"));
+  });
+}

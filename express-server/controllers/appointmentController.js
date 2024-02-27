@@ -30,13 +30,13 @@ export const bookAppointment = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.FRONTEND_URL}/success`,
-      cancel_url: `${process.env.FRONTEND_URL}/doctors/${req.params.id}`,
+      success_url: `${process.env.URL}/success`,
+      cancel_url: `${process.env_URL}/doctors/${req.params.id}`,
       metadata: {
         doctorId: req.params.id,
         userId: req.locals,
         date: formattedDate,
-        time,   
+        time,
       },
     });
 
