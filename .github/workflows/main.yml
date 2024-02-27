@@ -6,13 +6,8 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
-    env:
-      VITE_APP_CLOUD_NAME: ${{ secrets.VITE_APP_CLOUD_NAME }}
-      VITE_APP_PRESET: ${{ secrets.VITE_APP_PRESET }}
-      VITE_APP_BASE_URL: "/api"
 
     steps:
       - name: Checkout code
@@ -22,10 +17,27 @@ jobs:
         run: |
           cd client
           npm install
-          VITE_APP_CLOUD_NAME=$VITE_APP_CLOUD_NAME VITE_APP_PRESET=$VITE_APP_PRESET VITE_APP_BASE_URL=$VITE_APP_BASE_URL npm run build
+          VITE_APP_CLOUD_NAME=${{ secrets.VITE_APP_CLOUD_NAME }} VITE_APP_PRESET=${{ secrets.VITE_APP_PRESET }} VITE_APP_BASE_URL="/api" npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: client-dist
+          path: client/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: client-dist
+          path: client-dist
 
       - name: Move client build to server
-        run: mv client/dist/ express-server/
+        run: mv client-dist/* express-server/
 
       - name: Deploy to production
         uses: johnbeynon/render-deploy-action@v0.0.8
