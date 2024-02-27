@@ -30,8 +30,8 @@ export const bookAppointment = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.URL}/success`,
-      cancel_url: `${process.env_URL}/doctors/${req.params.id}`,
+      success_url: `https://medicify.onrender.com/success`,
+      cancel_url: `https://medicify.onrender.com/doctors/${req.params.id}`,
       metadata: {
         doctorId: req.params.id,
         userId: req.locals,
