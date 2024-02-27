@@ -7,6 +7,8 @@ import { userRouter } from "./routes/userRoutes.js";
 import { doctorRouter } from "./routes/doctorRoutes.js";
 import { appointmentRouter } from "./routes/appointmentRoutes.js";
 import { reviewRouter } from "./routes/reviewRoutes.js";
+import path from "path";
+const __dirname = path.resolve();
 
 dotenv.config();
 
