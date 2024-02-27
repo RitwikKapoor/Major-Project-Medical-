@@ -6,8 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "prod": "cd ../client && npm install && sleep 10 && npm run build && mv ./dist ../express-server && cd ../express-server && npm install"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
