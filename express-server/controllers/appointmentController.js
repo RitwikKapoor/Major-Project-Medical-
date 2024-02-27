@@ -69,7 +69,7 @@ export const handleStripeWebhook = async (req, res) => {
         userId,
       });
       await appointment.save();
-      res.status(200).json({ received: true });
+      res.status(200).json({ received: true }).end();
     }
   } catch (error) {
     console.error("Error handling webhook event:", error);

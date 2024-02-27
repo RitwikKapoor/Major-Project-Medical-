@@ -55,9 +55,7 @@ export const login = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-  res.cookie("my_cookie", "", {
-    expires: new Date(0),
-  });
+  res.clearCookie("my_cookie");
   res.send();
 };
 
