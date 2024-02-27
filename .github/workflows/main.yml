@@ -9,6 +9,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    env:
+      VITE_APP_CLOUD_NAME: ${{ secrets.VITE_APP_CLOUD_NAME }}
+      VITE_APP_PRESET: ${{ secrets.VITE_APP_PRESET }}
+      VITE_APP_BASE_URL: "/api"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -17,7 +22,7 @@ jobs:
         run: |
           cd client
           npm install
-          npm run build
+          VITE_APP_CLOUD_NAME=$VITE_APP_CLOUD_NAME VITE_APP_PRESET=$VITE_APP_PRESET VITE_APP_BASE_URL=$VITE_APP_BASE_URL npm run build
 
       - name: Move client build to server
         run: mv client/dist express-server/
