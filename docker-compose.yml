@@ -3,18 +3,18 @@ version: "3.7"
 services:
   express-server:
     build:
-      context: ./express-server
+      context: ./
       dockerfile: Dockerfile
     image: express-medical
     container_name: express-medical-container
     volumes:
-      - ./express-server/:/app/express-server
+      - ./:/app/express-server
       - express-server-modules:/app/express-server/node_modules
     ports:
       - "7000:7000"
     depends_on:
       - mongos
-    env_file: ./express-server/.env
+    env_file: ./.env
     networks:
       - app-network
   mongos:
