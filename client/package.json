@@ -20,12 +20,12 @@
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.3",
     "swiper": "^11.0.5",
-    "vite": "^5.0.12"
+    "vite": "^5.0.12",
+    "@vitejs/plugin-react": "^4.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.55.0",
     "eslint-plugin-react": "^7.33.2",
