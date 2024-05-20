@@ -9,18 +9,26 @@ import Login from "../../pages/Login.jsx";
 import Register from "../../pages/Register.jsx";
 import Doctors from "../../pages/Doctors.jsx";
 import Loader from "../../comman/Loader/Loader.jsx";
-import { Admin, Protected, Public, Doctor, User } from "../../utils/route.jsx";
+import { Admin, Protected, Public, User } from "../../utils/route.jsx";
 import adminRoutes from "../../utils/adminRoutes.jsx";
 import DoctorDetails from "../../pages/DoctorDetails.jsx";
 import ProfileDashboard from "../ProfileDashboard/ProfileDashboard.jsx";
 import PageNotFound from "../../pages/PageNotFound.jsx";
 import CheckoutSuccess from "../../pages/CheckoutSuceess.jsx";
+import Predictors from "../../pages/Predictors.jsx";
+import Insurance from "../../pages/Insurance.jsx";
+import Fitness from "../../pages/Fitness.jsx";
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/home" replace />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/predict">
+        <Route index element={<Predictors />} />
+        <Route path="insurance" element={<Insurance />} />
+        <Route path="fitness" element={<Fitness />} />
+      </Route>
       <Route
         path="/login"
         element={
@@ -70,11 +78,11 @@ const Router = () => {
         }
       />
       <Route
-        path="/dashboard"
+        path="/dashboard/"
         element={
           <Suspense fallback={<Loader />}>
             <Admin>
-              <Navigate to="/dashboard/main" replace />
+              <Navigate to="/dashboard/users" replace />
             </Admin>
           </Suspense>
         }
